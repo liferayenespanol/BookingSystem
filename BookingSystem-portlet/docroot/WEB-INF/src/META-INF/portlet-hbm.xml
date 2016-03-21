@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.LiferayEnEspanol.booking.model.MeetingRoom" />
+	<class name="com.LiferayEnEspanol.booking.model.impl.MeetingRoomImpl" table="LiferayEnEspanol_MeetingRoom">
+		<cache usage="read-write" />
+		<id name="meetingRoomId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
+		<property name="capacity" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="location" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="com.LiferayEnEspanol.booking">
+	<author>Jesus Flores</author>
+	<namespace>LiferayEnEspanol</namespace>
+
+	<entity name="MeetingRoom" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="meetingRoomId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="code" type="String" />
+		<column name="capacity" type="int" />
+		<column name="location" type="boolean" />
+		<column name="active" type="boolean" />
+		
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
+	</entity>
+</service-builder>
