@@ -36,6 +36,20 @@
 		<order by="asc">
 			<order-column name="name" />
 		</order>
+		
+		<!-- Finders -->
+		
+		<finder return-type="Collection" name="Capacity">
+			<finder-column name="capacity"/>
+		</finder>
+		<finder return-type="MeetingRoom" name="Name">
+			<finder-column name="name"/>
+		</finder>
+		<finder return-type="Collection" name="CapacityAndActive">
+			<finder-column name="capacity"/>
+			<finder-column name="active"/>
+		</finder>
+		
 
 	</entity>
 </service-builder>

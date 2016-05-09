@@ -1,17 +1,3 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.LiferayEnEspanol.booking.model.impl;
 
 import com.LiferayEnEspanol.booking.model.MeetingRoom;
@@ -35,156 +21,148 @@ import java.util.Date;
  * @generated
  */
 public class MeetingRoomCacheModel implements CacheModel<MeetingRoom>,
-	Externalizable {
-	@Override
-	public String toString() {
-		StringBundler sb = new StringBundler(25);
+    Externalizable {
+    public long meetingRoomId;
+    public long groupId;
+    public long companyId;
+    public long userId;
+    public String userName;
+    public long createDate;
+    public long modifiedDate;
+    public String name;
+    public String code;
+    public int capacity;
+    public boolean location;
+    public boolean active;
 
-		sb.append("{meetingRoomId=");
-		sb.append(meetingRoomId);
-		sb.append(", groupId=");
-		sb.append(groupId);
-		sb.append(", companyId=");
-		sb.append(companyId);
-		sb.append(", userId=");
-		sb.append(userId);
-		sb.append(", userName=");
-		sb.append(userName);
-		sb.append(", createDate=");
-		sb.append(createDate);
-		sb.append(", modifiedDate=");
-		sb.append(modifiedDate);
-		sb.append(", name=");
-		sb.append(name);
-		sb.append(", code=");
-		sb.append(code);
-		sb.append(", capacity=");
-		sb.append(capacity);
-		sb.append(", location=");
-		sb.append(location);
-		sb.append(", active=");
-		sb.append(active);
-		sb.append("}");
+    @Override
+    public String toString() {
+        StringBundler sb = new StringBundler(25);
 
-		return sb.toString();
-	}
+        sb.append("{meetingRoomId=");
+        sb.append(meetingRoomId);
+        sb.append(", groupId=");
+        sb.append(groupId);
+        sb.append(", companyId=");
+        sb.append(companyId);
+        sb.append(", userId=");
+        sb.append(userId);
+        sb.append(", userName=");
+        sb.append(userName);
+        sb.append(", createDate=");
+        sb.append(createDate);
+        sb.append(", modifiedDate=");
+        sb.append(modifiedDate);
+        sb.append(", name=");
+        sb.append(name);
+        sb.append(", code=");
+        sb.append(code);
+        sb.append(", capacity=");
+        sb.append(capacity);
+        sb.append(", location=");
+        sb.append(location);
+        sb.append(", active=");
+        sb.append(active);
+        sb.append("}");
 
-	@Override
-	public MeetingRoom toEntityModel() {
-		MeetingRoomImpl meetingRoomImpl = new MeetingRoomImpl();
+        return sb.toString();
+    }
 
-		meetingRoomImpl.setMeetingRoomId(meetingRoomId);
-		meetingRoomImpl.setGroupId(groupId);
-		meetingRoomImpl.setCompanyId(companyId);
-		meetingRoomImpl.setUserId(userId);
+    @Override
+    public MeetingRoom toEntityModel() {
+        MeetingRoomImpl meetingRoomImpl = new MeetingRoomImpl();
 
-		if (userName == null) {
-			meetingRoomImpl.setUserName(StringPool.BLANK);
-		}
-		else {
-			meetingRoomImpl.setUserName(userName);
-		}
+        meetingRoomImpl.setMeetingRoomId(meetingRoomId);
+        meetingRoomImpl.setGroupId(groupId);
+        meetingRoomImpl.setCompanyId(companyId);
+        meetingRoomImpl.setUserId(userId);
 
-		if (createDate == Long.MIN_VALUE) {
-			meetingRoomImpl.setCreateDate(null);
-		}
-		else {
-			meetingRoomImpl.setCreateDate(new Date(createDate));
-		}
+        if (userName == null) {
+            meetingRoomImpl.setUserName(StringPool.BLANK);
+        } else {
+            meetingRoomImpl.setUserName(userName);
+        }
 
-		if (modifiedDate == Long.MIN_VALUE) {
-			meetingRoomImpl.setModifiedDate(null);
-		}
-		else {
-			meetingRoomImpl.setModifiedDate(new Date(modifiedDate));
-		}
+        if (createDate == Long.MIN_VALUE) {
+            meetingRoomImpl.setCreateDate(null);
+        } else {
+            meetingRoomImpl.setCreateDate(new Date(createDate));
+        }
 
-		if (name == null) {
-			meetingRoomImpl.setName(StringPool.BLANK);
-		}
-		else {
-			meetingRoomImpl.setName(name);
-		}
+        if (modifiedDate == Long.MIN_VALUE) {
+            meetingRoomImpl.setModifiedDate(null);
+        } else {
+            meetingRoomImpl.setModifiedDate(new Date(modifiedDate));
+        }
 
-		if (code == null) {
-			meetingRoomImpl.setCode(StringPool.BLANK);
-		}
-		else {
-			meetingRoomImpl.setCode(code);
-		}
+        if (name == null) {
+            meetingRoomImpl.setName(StringPool.BLANK);
+        } else {
+            meetingRoomImpl.setName(name);
+        }
 
-		meetingRoomImpl.setCapacity(capacity);
-		meetingRoomImpl.setLocation(location);
-		meetingRoomImpl.setActive(active);
+        if (code == null) {
+            meetingRoomImpl.setCode(StringPool.BLANK);
+        } else {
+            meetingRoomImpl.setCode(code);
+        }
 
-		meetingRoomImpl.resetOriginalValues();
+        meetingRoomImpl.setCapacity(capacity);
+        meetingRoomImpl.setLocation(location);
+        meetingRoomImpl.setActive(active);
 
-		return meetingRoomImpl;
-	}
+        meetingRoomImpl.resetOriginalValues();
 
-	@Override
-	public void readExternal(ObjectInput objectInput) throws IOException {
-		meetingRoomId = objectInput.readLong();
-		groupId = objectInput.readLong();
-		companyId = objectInput.readLong();
-		userId = objectInput.readLong();
-		userName = objectInput.readUTF();
-		createDate = objectInput.readLong();
-		modifiedDate = objectInput.readLong();
-		name = objectInput.readUTF();
-		code = objectInput.readUTF();
-		capacity = objectInput.readInt();
-		location = objectInput.readBoolean();
-		active = objectInput.readBoolean();
-	}
+        return meetingRoomImpl;
+    }
 
-	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
-		objectOutput.writeLong(meetingRoomId);
-		objectOutput.writeLong(groupId);
-		objectOutput.writeLong(companyId);
-		objectOutput.writeLong(userId);
+    @Override
+    public void readExternal(ObjectInput objectInput) throws IOException {
+        meetingRoomId = objectInput.readLong();
+        groupId = objectInput.readLong();
+        companyId = objectInput.readLong();
+        userId = objectInput.readLong();
+        userName = objectInput.readUTF();
+        createDate = objectInput.readLong();
+        modifiedDate = objectInput.readLong();
+        name = objectInput.readUTF();
+        code = objectInput.readUTF();
+        capacity = objectInput.readInt();
+        location = objectInput.readBoolean();
+        active = objectInput.readBoolean();
+    }
 
-		if (userName == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(userName);
-		}
+    @Override
+    public void writeExternal(ObjectOutput objectOutput)
+        throws IOException {
+        objectOutput.writeLong(meetingRoomId);
+        objectOutput.writeLong(groupId);
+        objectOutput.writeLong(companyId);
+        objectOutput.writeLong(userId);
 
-		objectOutput.writeLong(createDate);
-		objectOutput.writeLong(modifiedDate);
+        if (userName == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(userName);
+        }
 
-		if (name == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(name);
-		}
+        objectOutput.writeLong(createDate);
+        objectOutput.writeLong(modifiedDate);
 
-		if (code == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(code);
-		}
+        if (name == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(name);
+        }
 
-		objectOutput.writeInt(capacity);
-		objectOutput.writeBoolean(location);
-		objectOutput.writeBoolean(active);
-	}
+        if (code == null) {
+            objectOutput.writeUTF(StringPool.BLANK);
+        } else {
+            objectOutput.writeUTF(code);
+        }
 
-	public long meetingRoomId;
-	public long groupId;
-	public long companyId;
-	public long userId;
-	public String userName;
-	public long createDate;
-	public long modifiedDate;
-	public String name;
-	public String code;
-	public int capacity;
-	public boolean location;
-	public boolean active;
+        objectOutput.writeInt(capacity);
+        objectOutput.writeBoolean(location);
+        objectOutput.writeBoolean(active);
+    }
 }

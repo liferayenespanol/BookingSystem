@@ -1,17 +1,3 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.LiferayEnEspanol.booking.model;
 
 import java.io.Serializable;
@@ -28,187 +14,186 @@ import java.util.List;
  * @generated
  */
 public class MeetingRoomSoap implements Serializable {
-	public static MeetingRoomSoap toSoapModel(MeetingRoom model) {
-		MeetingRoomSoap soapModel = new MeetingRoomSoap();
+    private long _meetingRoomId;
+    private long _groupId;
+    private long _companyId;
+    private long _userId;
+    private String _userName;
+    private Date _createDate;
+    private Date _modifiedDate;
+    private String _name;
+    private String _code;
+    private int _capacity;
+    private boolean _location;
+    private boolean _active;
 
-		soapModel.setMeetingRoomId(model.getMeetingRoomId());
-		soapModel.setGroupId(model.getGroupId());
-		soapModel.setCompanyId(model.getCompanyId());
-		soapModel.setUserId(model.getUserId());
-		soapModel.setUserName(model.getUserName());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setName(model.getName());
-		soapModel.setCode(model.getCode());
-		soapModel.setCapacity(model.getCapacity());
-		soapModel.setLocation(model.getLocation());
-		soapModel.setActive(model.getActive());
+    public MeetingRoomSoap() {
+    }
 
-		return soapModel;
-	}
+    public static MeetingRoomSoap toSoapModel(MeetingRoom model) {
+        MeetingRoomSoap soapModel = new MeetingRoomSoap();
 
-	public static MeetingRoomSoap[] toSoapModels(MeetingRoom[] models) {
-		MeetingRoomSoap[] soapModels = new MeetingRoomSoap[models.length];
+        soapModel.setMeetingRoomId(model.getMeetingRoomId());
+        soapModel.setGroupId(model.getGroupId());
+        soapModel.setCompanyId(model.getCompanyId());
+        soapModel.setUserId(model.getUserId());
+        soapModel.setUserName(model.getUserName());
+        soapModel.setCreateDate(model.getCreateDate());
+        soapModel.setModifiedDate(model.getModifiedDate());
+        soapModel.setName(model.getName());
+        soapModel.setCode(model.getCode());
+        soapModel.setCapacity(model.getCapacity());
+        soapModel.setLocation(model.getLocation());
+        soapModel.setActive(model.getActive());
 
-		for (int i = 0; i < models.length; i++) {
-			soapModels[i] = toSoapModel(models[i]);
-		}
+        return soapModel;
+    }
 
-		return soapModels;
-	}
+    public static MeetingRoomSoap[] toSoapModels(MeetingRoom[] models) {
+        MeetingRoomSoap[] soapModels = new MeetingRoomSoap[models.length];
 
-	public static MeetingRoomSoap[][] toSoapModels(MeetingRoom[][] models) {
-		MeetingRoomSoap[][] soapModels = null;
+        for (int i = 0; i < models.length; i++) {
+            soapModels[i] = toSoapModel(models[i]);
+        }
 
-		if (models.length > 0) {
-			soapModels = new MeetingRoomSoap[models.length][models[0].length];
-		}
-		else {
-			soapModels = new MeetingRoomSoap[0][0];
-		}
+        return soapModels;
+    }
 
-		for (int i = 0; i < models.length; i++) {
-			soapModels[i] = toSoapModels(models[i]);
-		}
+    public static MeetingRoomSoap[][] toSoapModels(MeetingRoom[][] models) {
+        MeetingRoomSoap[][] soapModels = null;
 
-		return soapModels;
-	}
+        if (models.length > 0) {
+            soapModels = new MeetingRoomSoap[models.length][models[0].length];
+        } else {
+            soapModels = new MeetingRoomSoap[0][0];
+        }
 
-	public static MeetingRoomSoap[] toSoapModels(List<MeetingRoom> models) {
-		List<MeetingRoomSoap> soapModels = new ArrayList<MeetingRoomSoap>(models.size());
+        for (int i = 0; i < models.length; i++) {
+            soapModels[i] = toSoapModels(models[i]);
+        }
 
-		for (MeetingRoom model : models) {
-			soapModels.add(toSoapModel(model));
-		}
+        return soapModels;
+    }
 
-		return soapModels.toArray(new MeetingRoomSoap[soapModels.size()]);
-	}
+    public static MeetingRoomSoap[] toSoapModels(List<MeetingRoom> models) {
+        List<MeetingRoomSoap> soapModels = new ArrayList<MeetingRoomSoap>(models.size());
 
-	public MeetingRoomSoap() {
-	}
+        for (MeetingRoom model : models) {
+            soapModels.add(toSoapModel(model));
+        }
 
-	public long getPrimaryKey() {
-		return _meetingRoomId;
-	}
+        return soapModels.toArray(new MeetingRoomSoap[soapModels.size()]);
+    }
 
-	public void setPrimaryKey(long pk) {
-		setMeetingRoomId(pk);
-	}
+    public long getPrimaryKey() {
+        return _meetingRoomId;
+    }
 
-	public long getMeetingRoomId() {
-		return _meetingRoomId;
-	}
+    public void setPrimaryKey(long pk) {
+        setMeetingRoomId(pk);
+    }
 
-	public void setMeetingRoomId(long meetingRoomId) {
-		_meetingRoomId = meetingRoomId;
-	}
+    public long getMeetingRoomId() {
+        return _meetingRoomId;
+    }
 
-	public long getGroupId() {
-		return _groupId;
-	}
+    public void setMeetingRoomId(long meetingRoomId) {
+        _meetingRoomId = meetingRoomId;
+    }
 
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
+    public long getGroupId() {
+        return _groupId;
+    }
 
-	public long getCompanyId() {
-		return _companyId;
-	}
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
+    }
 
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
+    public long getCompanyId() {
+        return _companyId;
+    }
 
-	public long getUserId() {
-		return _userId;
-	}
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+    }
 
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
+    public long getUserId() {
+        return _userId;
+    }
 
-	public String getUserName() {
-		return _userName;
-	}
+    public void setUserId(long userId) {
+        _userId = userId;
+    }
 
-	public void setUserName(String userName) {
-		_userName = userName;
-	}
+    public String getUserName() {
+        return _userName;
+    }
 
-	public Date getCreateDate() {
-		return _createDate;
-	}
+    public void setUserName(String userName) {
+        _userName = userName;
+    }
 
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
+    public Date getCreateDate() {
+        return _createDate;
+    }
 
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
+    public void setCreateDate(Date createDate) {
+        _createDate = createDate;
+    }
 
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
+    public Date getModifiedDate() {
+        return _modifiedDate;
+    }
 
-	public String getName() {
-		return _name;
-	}
+    public void setModifiedDate(Date modifiedDate) {
+        _modifiedDate = modifiedDate;
+    }
 
-	public void setName(String name) {
-		_name = name;
-	}
+    public String getName() {
+        return _name;
+    }
 
-	public String getCode() {
-		return _code;
-	}
+    public void setName(String name) {
+        _name = name;
+    }
 
-	public void setCode(String code) {
-		_code = code;
-	}
+    public String getCode() {
+        return _code;
+    }
 
-	public int getCapacity() {
-		return _capacity;
-	}
+    public void setCode(String code) {
+        _code = code;
+    }
 
-	public void setCapacity(int capacity) {
-		_capacity = capacity;
-	}
+    public int getCapacity() {
+        return _capacity;
+    }
 
-	public boolean getLocation() {
-		return _location;
-	}
+    public void setCapacity(int capacity) {
+        _capacity = capacity;
+    }
 
-	public boolean isLocation() {
-		return _location;
-	}
+    public boolean getLocation() {
+        return _location;
+    }
 
-	public void setLocation(boolean location) {
-		_location = location;
-	}
+    public boolean isLocation() {
+        return _location;
+    }
 
-	public boolean getActive() {
-		return _active;
-	}
+    public void setLocation(boolean location) {
+        _location = location;
+    }
 
-	public boolean isActive() {
-		return _active;
-	}
+    public boolean getActive() {
+        return _active;
+    }
 
-	public void setActive(boolean active) {
-		_active = active;
-	}
+    public boolean isActive() {
+        return _active;
+    }
 
-	private long _meetingRoomId;
-	private long _groupId;
-	private long _companyId;
-	private long _userId;
-	private String _userName;
-	private Date _createDate;
-	private Date _modifiedDate;
-	private String _name;
-	private String _code;
-	private int _capacity;
-	private boolean _location;
-	private boolean _active;
+    public void setActive(boolean active) {
+        _active = active;
+    }
 }

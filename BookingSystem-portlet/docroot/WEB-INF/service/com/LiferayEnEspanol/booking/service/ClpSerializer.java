@@ -1,17 +1,3 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.LiferayEnEspanol.booking.service;
 
 import com.LiferayEnEspanol.booking.model.MeetingRoomClp;
@@ -35,255 +21,243 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Jesus Flores
- */
+
 public class ClpSerializer {
-	public static String getServletContextName() {
-		if (Validator.isNotNull(_servletContextName)) {
-			return _servletContextName;
-		}
-
-		synchronized (ClpSerializer.class) {
-			if (Validator.isNotNull(_servletContextName)) {
-				return _servletContextName;
-			}
-
-			try {
-				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
-
-				Class<?> portletPropsClass = classLoader.loadClass(
-						"com.liferay.util.portlet.PortletProps");
-
-				Method getMethod = portletPropsClass.getMethod("get",
-						new Class<?>[] { String.class });
-
-				String portletPropsServletContextName = (String)getMethod.invoke(null,
-						"BookingSystem-portlet-deployment-context");
-
-				if (Validator.isNotNull(portletPropsServletContextName)) {
-					_servletContextName = portletPropsServletContextName;
-				}
-			}
-			catch (Throwable t) {
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Unable to locate deployment context from portlet properties");
-				}
-			}
+    private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
+    private static String _servletContextName;
+    private static boolean _useReflectionToTranslateThrowable = true;
+
+    public static String getServletContextName() {
+        if (Validator.isNotNull(_servletContextName)) {
+            return _servletContextName;
+        }
+
+        synchronized (ClpSerializer.class) {
+            if (Validator.isNotNull(_servletContextName)) {
+                return _servletContextName;
+            }
+
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+                Class<?> portletPropsClass = classLoader.loadClass(
+                        "com.liferay.util.portlet.PortletProps");
+
+                Method getMethod = portletPropsClass.getMethod("get",
+                        new Class<?>[] { String.class });
+
+                String portletPropsServletContextName = (String) getMethod.invoke(null,
+                        "BookingSystem-portlet-deployment-context");
+
+                if (Validator.isNotNull(portletPropsServletContextName)) {
+                    _servletContextName = portletPropsServletContextName;
+                }
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info(
+                        "Unable to locate deployment context from portlet properties");
+                }
+            }
 
-			if (Validator.isNull(_servletContextName)) {
-				try {
-					String propsUtilServletContextName = PropsUtil.get(
-							"BookingSystem-portlet-deployment-context");
+            if (Validator.isNull(_servletContextName)) {
+                try {
+                    String propsUtilServletContextName = PropsUtil.get(
+                            "BookingSystem-portlet-deployment-context");
 
-					if (Validator.isNotNull(propsUtilServletContextName)) {
-						_servletContextName = propsUtilServletContextName;
-					}
-				}
-				catch (Throwable t) {
-					if (_log.isInfoEnabled()) {
-						_log.info(
-							"Unable to locate deployment context from portal properties");
-					}
-				}
-			}
-
-			if (Validator.isNull(_servletContextName)) {
-				_servletContextName = "BookingSystem-portlet";
-			}
-
-			return _servletContextName;
-		}
-	}
-
-	public static Object translateInput(BaseModel<?> oldModel) {
-		Class<?> oldModelClass = oldModel.getClass();
+                    if (Validator.isNotNull(propsUtilServletContextName)) {
+                        _servletContextName = propsUtilServletContextName;
+                    }
+                } catch (Throwable t) {
+                    if (_log.isInfoEnabled()) {
+                        _log.info(
+                            "Unable to locate deployment context from portal properties");
+                    }
+                }
+            }
 
-		String oldModelClassName = oldModelClass.getName();
+            if (Validator.isNull(_servletContextName)) {
+                _servletContextName = "BookingSystem-portlet";
+            }
 
-		if (oldModelClassName.equals(MeetingRoomClp.class.getName())) {
-			return translateInputMeetingRoom(oldModel);
-		}
-
-		return oldModel;
-	}
-
-	public static Object translateInput(List<Object> oldList) {
-		List<Object> newList = new ArrayList<Object>(oldList.size());
-
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
-
-			newList.add(translateInput(curObj));
-		}
-
-		return newList;
-	}
-
-	public static Object translateInputMeetingRoom(BaseModel<?> oldModel) {
-		MeetingRoomClp oldClpModel = (MeetingRoomClp)oldModel;
-
-		BaseModel<?> newModel = oldClpModel.getMeetingRoomRemoteModel();
-
-		newModel.setModelAttributes(oldClpModel.getModelAttributes());
-
-		return newModel;
-	}
+            return _servletContextName;
+        }
+    }
 
-	public static Object translateInput(Object obj) {
-		if (obj instanceof BaseModel<?>) {
-			return translateInput((BaseModel<?>)obj);
-		}
-		else if (obj instanceof List<?>) {
-			return translateInput((List<Object>)obj);
-		}
-		else {
-			return obj;
-		}
-	}
+    public static Object translateInput(BaseModel<?> oldModel) {
+        Class<?> oldModelClass = oldModel.getClass();
 
-	public static Object translateOutput(BaseModel<?> oldModel) {
-		Class<?> oldModelClass = oldModel.getClass();
+        String oldModelClassName = oldModelClass.getName();
 
-		String oldModelClassName = oldModelClass.getName();
+        if (oldModelClassName.equals(MeetingRoomClp.class.getName())) {
+            return translateInputMeetingRoom(oldModel);
+        }
 
-		if (oldModelClassName.equals(
-					"com.LiferayEnEspanol.booking.model.impl.MeetingRoomImpl")) {
-			return translateOutputMeetingRoom(oldModel);
-		}
-		else if (oldModelClassName.endsWith("Clp")) {
-			try {
-				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+        return oldModel;
+    }
 
-				Method getClpSerializerClassMethod = oldModelClass.getMethod(
-						"getClpSerializerClass");
+    public static Object translateInput(List<Object> oldList) {
+        List<Object> newList = new ArrayList<Object>(oldList.size());
+
+        for (int i = 0; i < oldList.size(); i++) {
+            Object curObj = oldList.get(i);
 
-				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+            newList.add(translateInput(curObj));
+        }
 
-				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+        return newList;
+    }
 
-				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
-						BaseModel.class);
+    public static Object translateInputMeetingRoom(BaseModel<?> oldModel) {
+        MeetingRoomClp oldClpModel = (MeetingRoomClp) oldModel;
 
-				Class<?> oldModelModelClass = oldModel.getModelClass();
+        BaseModel<?> newModel = oldClpModel.getMeetingRoomRemoteModel();
 
-				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
-						oldModelModelClass.getSimpleName() + "RemoteModel");
+        newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
-				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+        return newModel;
+    }
 
-				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
-						oldRemoteModel);
+    public static Object translateInput(Object obj) {
+        if (obj instanceof BaseModel<?>) {
+            return translateInput((BaseModel<?>) obj);
+        } else if (obj instanceof List<?>) {
+            return translateInput((List<Object>) obj);
+        } else {
+            return obj;
+        }
+    }
 
-				return newModel;
-			}
-			catch (Throwable t) {
-				if (_log.isInfoEnabled()) {
-					_log.info("Unable to translate " + oldModelClassName, t);
-				}
-			}
-		}
+    public static Object translateOutput(BaseModel<?> oldModel) {
+        Class<?> oldModelClass = oldModel.getClass();
 
-		return oldModel;
-	}
+        String oldModelClassName = oldModelClass.getName();
 
-	public static Object translateOutput(List<Object> oldList) {
-		List<Object> newList = new ArrayList<Object>(oldList.size());
+        if (oldModelClassName.equals(
+                    "com.LiferayEnEspanol.booking.model.impl.MeetingRoomImpl")) {
+            return translateOutputMeetingRoom(oldModel);
+        } else if (oldModelClassName.endsWith("Clp")) {
+            try {
+                ClassLoader classLoader = ClpSerializer.class.getClassLoader();
 
-		for (int i = 0; i < oldList.size(); i++) {
-			Object curObj = oldList.get(i);
+                Method getClpSerializerClassMethod = oldModelClass.getMethod(
+                        "getClpSerializerClass");
 
-			newList.add(translateOutput(curObj));
-		}
+                Class<?> oldClpSerializerClass = (Class<?>) getClpSerializerClassMethod.invoke(oldModel);
 
-		return newList;
-	}
+                Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
 
-	public static Object translateOutput(Object obj) {
-		if (obj instanceof BaseModel<?>) {
-			return translateOutput((BaseModel<?>)obj);
-		}
-		else if (obj instanceof List<?>) {
-			return translateOutput((List<Object>)obj);
-		}
-		else {
-			return obj;
-		}
-	}
+                Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+                        BaseModel.class);
 
-	public static Throwable translateThrowable(Throwable throwable) {
-		if (_useReflectionToTranslateThrowable) {
-			try {
-				UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(unsyncByteArrayOutputStream);
+                Class<?> oldModelModelClass = oldModel.getModelClass();
 
-				objectOutputStream.writeObject(throwable);
+                Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+                        oldModelModelClass.getSimpleName() + "RemoteModel");
 
-				objectOutputStream.flush();
-				objectOutputStream.close();
+                Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
 
-				UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(unsyncByteArrayOutputStream.unsafeGetByteArray(),
-						0, unsyncByteArrayOutputStream.size());
+                BaseModel<?> newModel = (BaseModel<?>) translateOutputMethod.invoke(null,
+                        oldRemoteModel);
 
-				Thread currentThread = Thread.currentThread();
+                return newModel;
+            } catch (Throwable t) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Unable to translate " + oldModelClassName, t);
+                }
+            }
+        }
 
-				ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+        return oldModel;
+    }
 
-				ObjectInputStream objectInputStream = new ClassLoaderObjectInputStream(unsyncByteArrayInputStream,
-						contextClassLoader);
+    public static Object translateOutput(List<Object> oldList) {
+        List<Object> newList = new ArrayList<Object>(oldList.size());
 
-				throwable = (Throwable)objectInputStream.readObject();
+        for (int i = 0; i < oldList.size(); i++) {
+            Object curObj = oldList.get(i);
 
-				objectInputStream.close();
+            newList.add(translateOutput(curObj));
+        }
 
-				return throwable;
-			}
-			catch (SecurityException se) {
-				if (_log.isInfoEnabled()) {
-					_log.info("Do not use reflection to translate throwable");
-				}
+        return newList;
+    }
 
-				_useReflectionToTranslateThrowable = false;
-			}
-			catch (Throwable throwable2) {
-				_log.error(throwable2, throwable2);
+    public static Object translateOutput(Object obj) {
+        if (obj instanceof BaseModel<?>) {
+            return translateOutput((BaseModel<?>) obj);
+        } else if (obj instanceof List<?>) {
+            return translateOutput((List<Object>) obj);
+        } else {
+            return obj;
+        }
+    }
 
-				return throwable2;
-			}
-		}
+    public static Throwable translateThrowable(Throwable throwable) {
+        if (_useReflectionToTranslateThrowable) {
+            try {
+                UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(unsyncByteArrayOutputStream);
 
-		Class<?> clazz = throwable.getClass();
+                objectOutputStream.writeObject(throwable);
 
-		String className = clazz.getName();
+                objectOutputStream.flush();
+                objectOutputStream.close();
 
-		if (className.equals(PortalException.class.getName())) {
-			return new PortalException();
-		}
+                UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(unsyncByteArrayOutputStream.unsafeGetByteArray(),
+                        0, unsyncByteArrayOutputStream.size());
 
-		if (className.equals(SystemException.class.getName())) {
-			return new SystemException();
-		}
+                Thread currentThread = Thread.currentThread();
 
-		if (className.equals(
-					"com.LiferayEnEspanol.booking.NoSuchMeetingRoomException")) {
-			return new com.LiferayEnEspanol.booking.NoSuchMeetingRoomException();
-		}
+                ClassLoader contextClassLoader = currentThread.getContextClassLoader();
 
-		return throwable;
-	}
+                ObjectInputStream objectInputStream = new ClassLoaderObjectInputStream(unsyncByteArrayInputStream,
+                        contextClassLoader);
 
-	public static Object translateOutputMeetingRoom(BaseModel<?> oldModel) {
-		MeetingRoomClp newModel = new MeetingRoomClp();
+                throwable = (Throwable) objectInputStream.readObject();
 
-		newModel.setModelAttributes(oldModel.getModelAttributes());
+                objectInputStream.close();
 
-		newModel.setMeetingRoomRemoteModel(oldModel);
+                return throwable;
+            } catch (SecurityException se) {
+                if (_log.isInfoEnabled()) {
+                    _log.info("Do not use reflection to translate throwable");
+                }
 
-		return newModel;
-	}
+                _useReflectionToTranslateThrowable = false;
+            } catch (Throwable throwable2) {
+                _log.error(throwable2, throwable2);
 
-	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
-	private static String _servletContextName;
-	private static boolean _useReflectionToTranslateThrowable = true;
+                return throwable2;
+            }
+        }
+
+        Class<?> clazz = throwable.getClass();
+
+        String className = clazz.getName();
+
+        if (className.equals(PortalException.class.getName())) {
+            return new PortalException();
+        }
+
+        if (className.equals(SystemException.class.getName())) {
+            return new SystemException();
+        }
+
+        if (className.equals(
+                    "com.LiferayEnEspanol.booking.NoSuchMeetingRoomException")) {
+            return new com.LiferayEnEspanol.booking.NoSuchMeetingRoomException();
+        }
+
+        return throwable;
+    }
+
+    public static Object translateOutputMeetingRoom(BaseModel<?> oldModel) {
+        MeetingRoomClp newModel = new MeetingRoomClp();
+
+        newModel.setModelAttributes(oldModel.getModelAttributes());
+
+        newModel.setMeetingRoomRemoteModel(oldModel);
+
+        return newModel;
+    }
 }

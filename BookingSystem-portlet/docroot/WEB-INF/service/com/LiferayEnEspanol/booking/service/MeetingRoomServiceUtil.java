@@ -1,17 +1,3 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.LiferayEnEspanol.booking.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -33,64 +19,63 @@ import com.liferay.portal.service.InvokableService;
  * @generated
  */
 public class MeetingRoomServiceUtil {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.LiferayEnEspanol.booking.service.impl.MeetingRoomServiceImpl} and rerun ServiceBuilder to regenerate this class.
-	 */
+    private static MeetingRoomService _service;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
+    /*
+     * NOTE FOR DEVELOPERS:
+     *
+     * Never modify this class directly. Add custom service methods to {@link com.LiferayEnEspanol.booking.service.impl.MeetingRoomServiceImpl} and rerun ServiceBuilder to regenerate this class.
+     */
 
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
-	}
+    /**
+    * Returns the Spring bean ID for this bean.
+    *
+    * @return the Spring bean ID for this bean
+    */
+    public static java.lang.String getBeanIdentifier() {
+        return getService().getBeanIdentifier();
+    }
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
+    /**
+    * Sets the Spring bean ID for this bean.
+    *
+    * @param beanIdentifier the Spring bean ID for this bean
+    */
+    public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+        getService().setBeanIdentifier(beanIdentifier);
+    }
 
-	public static void clearService() {
-		_service = null;
-	}
+    public static java.lang.Object invokeMethod(java.lang.String name,
+        java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+        throws java.lang.Throwable {
+        return getService().invokeMethod(name, parameterTypes, arguments);
+    }
 
-	public static MeetingRoomService getService() {
-		if (_service == null) {
-			InvokableService invokableService = (InvokableService)PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
-					MeetingRoomService.class.getName());
+    public static void clearService() {
+        _service = null;
+    }
 
-			if (invokableService instanceof MeetingRoomService) {
-				_service = (MeetingRoomService)invokableService;
-			}
-			else {
-				_service = new MeetingRoomServiceClp(invokableService);
-			}
+    public static MeetingRoomService getService() {
+        if (_service == null) {
+            InvokableService invokableService = (InvokableService) PortletBeanLocatorUtil.locate(ClpSerializer.getServletContextName(),
+                    MeetingRoomService.class.getName());
 
-			ReferenceRegistry.registerReference(MeetingRoomServiceUtil.class,
-				"_service");
-		}
+            if (invokableService instanceof MeetingRoomService) {
+                _service = (MeetingRoomService) invokableService;
+            } else {
+                _service = new MeetingRoomServiceClp(invokableService);
+            }
 
-		return _service;
-	}
+            ReferenceRegistry.registerReference(MeetingRoomServiceUtil.class,
+                "_service");
+        }
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	public void setService(MeetingRoomService service) {
-	}
+        return _service;
+    }
 
-	private static MeetingRoomService _service;
+    /**
+     * @deprecated As of 6.2.0
+     */
+    public void setService(MeetingRoomService service) {
+    }
 }

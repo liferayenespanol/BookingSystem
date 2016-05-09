@@ -14,6 +14,8 @@
 
 package com.LiferayEnEspanol.booking.service.impl;
 
+import java.util.Collection;
+
 import com.LiferayEnEspanol.booking.service.base.MeetingRoomLocalServiceBaseImpl;
 
 /**
@@ -36,4 +38,13 @@ public class MeetingRoomLocalServiceImpl extends MeetingRoomLocalServiceBaseImpl
 	 *
 	 * Never reference this interface directly. Always use {@link com.LiferayEnEspanol.booking.service.MeetingRoomLocalServiceUtil} to access the meeting room local service.
 	 */
+	public Collection findByCapacity(int capacity){
+		return meetingRoomPersistence.findbyCapacity(capacity);
+	}
+	public Collection findByName(String name){
+		return meetingRoomPersistence.findByName(name);
+	}
+	public Collection findByCapacity(int capacity,boolean active){
+		return meetingRoomPersistence.findbyCapacityAndActive(capacity,active);
+	}
 }

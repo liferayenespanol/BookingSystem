@@ -1,17 +1,3 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.LiferayEnEspanol.booking.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
@@ -41,295 +27,295 @@ import java.util.Date;
  * @generated
  */
 public interface MeetingRoomModel extends BaseModel<MeetingRoom>, GroupedModel {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this interface directly. All methods that expect a meeting room model instance should use the {@link MeetingRoom} interface instead.
-	 */
+    /*
+     * NOTE FOR DEVELOPERS:
+     *
+     * Never modify or reference this interface directly. All methods that expect a meeting room model instance should use the {@link MeetingRoom} interface instead.
+     */
 
-	/**
-	 * Returns the primary key of this meeting room.
-	 *
-	 * @return the primary key of this meeting room
-	 */
-	public long getPrimaryKey();
+    /**
+     * Returns the primary key of this meeting room.
+     *
+     * @return the primary key of this meeting room
+     */
+    public long getPrimaryKey();
 
-	/**
-	 * Sets the primary key of this meeting room.
-	 *
-	 * @param primaryKey the primary key of this meeting room
-	 */
-	public void setPrimaryKey(long primaryKey);
+    /**
+     * Sets the primary key of this meeting room.
+     *
+     * @param primaryKey the primary key of this meeting room
+     */
+    public void setPrimaryKey(long primaryKey);
 
-	/**
-	 * Returns the meeting room ID of this meeting room.
-	 *
-	 * @return the meeting room ID of this meeting room
-	 */
-	public long getMeetingRoomId();
+    /**
+     * Returns the meeting room ID of this meeting room.
+     *
+     * @return the meeting room ID of this meeting room
+     */
+    public long getMeetingRoomId();
 
-	/**
-	 * Sets the meeting room ID of this meeting room.
-	 *
-	 * @param meetingRoomId the meeting room ID of this meeting room
-	 */
-	public void setMeetingRoomId(long meetingRoomId);
+    /**
+     * Sets the meeting room ID of this meeting room.
+     *
+     * @param meetingRoomId the meeting room ID of this meeting room
+     */
+    public void setMeetingRoomId(long meetingRoomId);
 
-	/**
-	 * Returns the group ID of this meeting room.
-	 *
-	 * @return the group ID of this meeting room
-	 */
-	@Override
-	public long getGroupId();
+    /**
+     * Returns the group ID of this meeting room.
+     *
+     * @return the group ID of this meeting room
+     */
+    @Override
+    public long getGroupId();
 
-	/**
-	 * Sets the group ID of this meeting room.
-	 *
-	 * @param groupId the group ID of this meeting room
-	 */
-	@Override
-	public void setGroupId(long groupId);
+    /**
+     * Sets the group ID of this meeting room.
+     *
+     * @param groupId the group ID of this meeting room
+     */
+    @Override
+    public void setGroupId(long groupId);
 
-	/**
-	 * Returns the company ID of this meeting room.
-	 *
-	 * @return the company ID of this meeting room
-	 */
-	@Override
-	public long getCompanyId();
+    /**
+     * Returns the company ID of this meeting room.
+     *
+     * @return the company ID of this meeting room
+     */
+    @Override
+    public long getCompanyId();
 
-	/**
-	 * Sets the company ID of this meeting room.
-	 *
-	 * @param companyId the company ID of this meeting room
-	 */
-	@Override
-	public void setCompanyId(long companyId);
+    /**
+     * Sets the company ID of this meeting room.
+     *
+     * @param companyId the company ID of this meeting room
+     */
+    @Override
+    public void setCompanyId(long companyId);
 
-	/**
-	 * Returns the user ID of this meeting room.
-	 *
-	 * @return the user ID of this meeting room
-	 */
-	@Override
-	public long getUserId();
+    /**
+     * Returns the user ID of this meeting room.
+     *
+     * @return the user ID of this meeting room
+     */
+    @Override
+    public long getUserId();
 
-	/**
-	 * Sets the user ID of this meeting room.
-	 *
-	 * @param userId the user ID of this meeting room
-	 */
-	@Override
-	public void setUserId(long userId);
+    /**
+     * Sets the user ID of this meeting room.
+     *
+     * @param userId the user ID of this meeting room
+     */
+    @Override
+    public void setUserId(long userId);
 
-	/**
-	 * Returns the user uuid of this meeting room.
-	 *
-	 * @return the user uuid of this meeting room
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public String getUserUuid() throws SystemException;
+    /**
+     * Returns the user uuid of this meeting room.
+     *
+     * @return the user uuid of this meeting room
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public String getUserUuid() throws SystemException;
 
-	/**
-	 * Sets the user uuid of this meeting room.
-	 *
-	 * @param userUuid the user uuid of this meeting room
-	 */
-	@Override
-	public void setUserUuid(String userUuid);
+    /**
+     * Sets the user uuid of this meeting room.
+     *
+     * @param userUuid the user uuid of this meeting room
+     */
+    @Override
+    public void setUserUuid(String userUuid);
 
-	/**
-	 * Returns the user name of this meeting room.
-	 *
-	 * @return the user name of this meeting room
-	 */
-	@AutoEscape
-	@Override
-	public String getUserName();
+    /**
+     * Returns the user name of this meeting room.
+     *
+     * @return the user name of this meeting room
+     */
+    @AutoEscape
+    @Override
+    public String getUserName();
 
-	/**
-	 * Sets the user name of this meeting room.
-	 *
-	 * @param userName the user name of this meeting room
-	 */
-	@Override
-	public void setUserName(String userName);
+    /**
+     * Sets the user name of this meeting room.
+     *
+     * @param userName the user name of this meeting room
+     */
+    @Override
+    public void setUserName(String userName);
 
-	/**
-	 * Returns the create date of this meeting room.
-	 *
-	 * @return the create date of this meeting room
-	 */
-	@Override
-	public Date getCreateDate();
+    /**
+     * Returns the create date of this meeting room.
+     *
+     * @return the create date of this meeting room
+     */
+    @Override
+    public Date getCreateDate();
 
-	/**
-	 * Sets the create date of this meeting room.
-	 *
-	 * @param createDate the create date of this meeting room
-	 */
-	@Override
-	public void setCreateDate(Date createDate);
+    /**
+     * Sets the create date of this meeting room.
+     *
+     * @param createDate the create date of this meeting room
+     */
+    @Override
+    public void setCreateDate(Date createDate);
 
-	/**
-	 * Returns the modified date of this meeting room.
-	 *
-	 * @return the modified date of this meeting room
-	 */
-	@Override
-	public Date getModifiedDate();
+    /**
+     * Returns the modified date of this meeting room.
+     *
+     * @return the modified date of this meeting room
+     */
+    @Override
+    public Date getModifiedDate();
 
-	/**
-	 * Sets the modified date of this meeting room.
-	 *
-	 * @param modifiedDate the modified date of this meeting room
-	 */
-	@Override
-	public void setModifiedDate(Date modifiedDate);
+    /**
+     * Sets the modified date of this meeting room.
+     *
+     * @param modifiedDate the modified date of this meeting room
+     */
+    @Override
+    public void setModifiedDate(Date modifiedDate);
 
-	/**
-	 * Returns the name of this meeting room.
-	 *
-	 * @return the name of this meeting room
-	 */
-	@AutoEscape
-	public String getName();
+    /**
+     * Returns the name of this meeting room.
+     *
+     * @return the name of this meeting room
+     */
+    @AutoEscape
+    public String getName();
 
-	/**
-	 * Sets the name of this meeting room.
-	 *
-	 * @param name the name of this meeting room
-	 */
-	public void setName(String name);
+    /**
+     * Sets the name of this meeting room.
+     *
+     * @param name the name of this meeting room
+     */
+    public void setName(String name);
 
-	/**
-	 * Returns the code of this meeting room.
-	 *
-	 * @return the code of this meeting room
-	 */
-	@AutoEscape
-	public String getCode();
+    /**
+     * Returns the code of this meeting room.
+     *
+     * @return the code of this meeting room
+     */
+    @AutoEscape
+    public String getCode();
 
-	/**
-	 * Sets the code of this meeting room.
-	 *
-	 * @param code the code of this meeting room
-	 */
-	public void setCode(String code);
+    /**
+     * Sets the code of this meeting room.
+     *
+     * @param code the code of this meeting room
+     */
+    public void setCode(String code);
 
-	/**
-	 * Returns the capacity of this meeting room.
-	 *
-	 * @return the capacity of this meeting room
-	 */
-	public int getCapacity();
+    /**
+     * Returns the capacity of this meeting room.
+     *
+     * @return the capacity of this meeting room
+     */
+    public int getCapacity();
 
-	/**
-	 * Sets the capacity of this meeting room.
-	 *
-	 * @param capacity the capacity of this meeting room
-	 */
-	public void setCapacity(int capacity);
+    /**
+     * Sets the capacity of this meeting room.
+     *
+     * @param capacity the capacity of this meeting room
+     */
+    public void setCapacity(int capacity);
 
-	/**
-	 * Returns the location of this meeting room.
-	 *
-	 * @return the location of this meeting room
-	 */
-	public boolean getLocation();
+    /**
+     * Returns the location of this meeting room.
+     *
+     * @return the location of this meeting room
+     */
+    public boolean getLocation();
 
-	/**
-	 * Returns <code>true</code> if this meeting room is location.
-	 *
-	 * @return <code>true</code> if this meeting room is location; <code>false</code> otherwise
-	 */
-	public boolean isLocation();
+    /**
+     * Returns <code>true</code> if this meeting room is location.
+     *
+     * @return <code>true</code> if this meeting room is location; <code>false</code> otherwise
+     */
+    public boolean isLocation();
 
-	/**
-	 * Sets whether this meeting room is location.
-	 *
-	 * @param location the location of this meeting room
-	 */
-	public void setLocation(boolean location);
+    /**
+     * Sets whether this meeting room is location.
+     *
+     * @param location the location of this meeting room
+     */
+    public void setLocation(boolean location);
 
-	/**
-	 * Returns the active of this meeting room.
-	 *
-	 * @return the active of this meeting room
-	 */
-	public boolean getActive();
+    /**
+     * Returns the active of this meeting room.
+     *
+     * @return the active of this meeting room
+     */
+    public boolean getActive();
 
-	/**
-	 * Returns <code>true</code> if this meeting room is active.
-	 *
-	 * @return <code>true</code> if this meeting room is active; <code>false</code> otherwise
-	 */
-	public boolean isActive();
+    /**
+     * Returns <code>true</code> if this meeting room is active.
+     *
+     * @return <code>true</code> if this meeting room is active; <code>false</code> otherwise
+     */
+    public boolean isActive();
 
-	/**
-	 * Sets whether this meeting room is active.
-	 *
-	 * @param active the active of this meeting room
-	 */
-	public void setActive(boolean active);
+    /**
+     * Sets whether this meeting room is active.
+     *
+     * @param active the active of this meeting room
+     */
+    public void setActive(boolean active);
 
-	@Override
-	public boolean isNew();
+    @Override
+    public boolean isNew();
 
-	@Override
-	public void setNew(boolean n);
+    @Override
+    public void setNew(boolean n);
 
-	@Override
-	public boolean isCachedModel();
+    @Override
+    public boolean isCachedModel();
 
-	@Override
-	public void setCachedModel(boolean cachedModel);
+    @Override
+    public void setCachedModel(boolean cachedModel);
 
-	@Override
-	public boolean isEscapedModel();
+    @Override
+    public boolean isEscapedModel();
 
-	@Override
-	public Serializable getPrimaryKeyObj();
+    @Override
+    public Serializable getPrimaryKeyObj();
 
-	@Override
-	public void setPrimaryKeyObj(Serializable primaryKeyObj);
+    @Override
+    public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
-	@Override
-	public ExpandoBridge getExpandoBridge();
+    @Override
+    public ExpandoBridge getExpandoBridge();
 
-	@Override
-	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
+    @Override
+    public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
 
-	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
+    @Override
+    public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
 
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
+    @Override
+    public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
-	@Override
-	public Object clone();
+    @Override
+    public Object clone();
 
-	@Override
-	public int compareTo(
-		com.LiferayEnEspanol.booking.model.MeetingRoom meetingRoom);
+    @Override
+    public int compareTo(
+        com.LiferayEnEspanol.booking.model.MeetingRoom meetingRoom);
 
-	@Override
-	public int hashCode();
+    @Override
+    public int hashCode();
 
-	@Override
-	public CacheModel<com.LiferayEnEspanol.booking.model.MeetingRoom> toCacheModel();
+    @Override
+    public CacheModel<com.LiferayEnEspanol.booking.model.MeetingRoom> toCacheModel();
 
-	@Override
-	public com.LiferayEnEspanol.booking.model.MeetingRoom toEscapedModel();
+    @Override
+    public com.LiferayEnEspanol.booking.model.MeetingRoom toEscapedModel();
 
-	@Override
-	public com.LiferayEnEspanol.booking.model.MeetingRoom toUnescapedModel();
+    @Override
+    public com.LiferayEnEspanol.booking.model.MeetingRoom toUnescapedModel();
 
-	@Override
-	public String toString();
+    @Override
+    public String toString();
 
-	@Override
-	public String toXmlString();
+    @Override
+    public String toXmlString();
 }

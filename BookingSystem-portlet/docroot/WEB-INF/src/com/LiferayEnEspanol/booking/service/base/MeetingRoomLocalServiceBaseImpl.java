@@ -1,17 +1,3 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.LiferayEnEspanol.booking.service.base;
 
 import com.LiferayEnEspanol.booking.model.MeetingRoom;
@@ -54,482 +40,480 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class MeetingRoomLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements MeetingRoomLocalService,
-		IdentifiableBean {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never modify or reference this class directly. Always use {@link com.LiferayEnEspanol.booking.service.MeetingRoomLocalServiceUtil} to access the meeting room local service.
-	 */
+    extends BaseLocalServiceImpl implements MeetingRoomLocalService,
+        IdentifiableBean {
+    @BeanReference(type = com.LiferayEnEspanol.booking.service.MeetingRoomLocalService.class)
+    protected com.LiferayEnEspanol.booking.service.MeetingRoomLocalService meetingRoomLocalService;
+    @BeanReference(type = com.LiferayEnEspanol.booking.service.MeetingRoomService.class)
+    protected com.LiferayEnEspanol.booking.service.MeetingRoomService meetingRoomService;
+    @BeanReference(type = MeetingRoomPersistence.class)
+    protected MeetingRoomPersistence meetingRoomPersistence;
+    @BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
+    protected com.liferay.counter.service.CounterLocalService counterLocalService;
+    @BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
+    protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
+    @BeanReference(type = com.liferay.portal.service.UserLocalService.class)
+    protected com.liferay.portal.service.UserLocalService userLocalService;
+    @BeanReference(type = com.liferay.portal.service.UserService.class)
+    protected com.liferay.portal.service.UserService userService;
+    @BeanReference(type = UserPersistence.class)
+    protected UserPersistence userPersistence;
+    private String _beanIdentifier;
+    private ClassLoader _classLoader;
+    private MeetingRoomLocalServiceClpInvoker _clpInvoker = new MeetingRoomLocalServiceClpInvoker();
 
-	/**
-	 * Adds the meeting room to the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetingRoom the meeting room
-	 * @return the meeting room that was added
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	@Override
-	public MeetingRoom addMeetingRoom(MeetingRoom meetingRoom)
-		throws SystemException {
-		meetingRoom.setNew(true);
+    /*
+     * NOTE FOR DEVELOPERS:
+     *
+     * Never modify or reference this class directly. Always use {@link com.LiferayEnEspanol.booking.service.MeetingRoomLocalServiceUtil} to access the meeting room local service.
+     */
 
-		return meetingRoomPersistence.update(meetingRoom);
-	}
+    /**
+     * Adds the meeting room to the database. Also notifies the appropriate model listeners.
+     *
+     * @param meetingRoom the meeting room
+     * @return the meeting room that was added
+     * @throws SystemException if a system exception occurred
+     */
+    @Indexable(type = IndexableType.REINDEX)
+    @Override
+    public MeetingRoom addMeetingRoom(MeetingRoom meetingRoom)
+        throws SystemException {
+        meetingRoom.setNew(true);
 
-	/**
-	 * Creates a new meeting room with the primary key. Does not add the meeting room to the database.
-	 *
-	 * @param meetingRoomId the primary key for the new meeting room
-	 * @return the new meeting room
-	 */
-	@Override
-	public MeetingRoom createMeetingRoom(long meetingRoomId) {
-		return meetingRoomPersistence.create(meetingRoomId);
-	}
+        return meetingRoomPersistence.update(meetingRoom);
+    }
 
-	/**
-	 * Deletes the meeting room with the primary key from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetingRoomId the primary key of the meeting room
-	 * @return the meeting room that was removed
-	 * @throws PortalException if a meeting room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.DELETE)
-	@Override
-	public MeetingRoom deleteMeetingRoom(long meetingRoomId)
-		throws PortalException, SystemException {
-		return meetingRoomPersistence.remove(meetingRoomId);
-	}
+    /**
+     * Creates a new meeting room with the primary key. Does not add the meeting room to the database.
+     *
+     * @param meetingRoomId the primary key for the new meeting room
+     * @return the new meeting room
+     */
+    @Override
+    public MeetingRoom createMeetingRoom(long meetingRoomId) {
+        return meetingRoomPersistence.create(meetingRoomId);
+    }
 
-	/**
-	 * Deletes the meeting room from the database. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetingRoom the meeting room
-	 * @return the meeting room that was removed
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.DELETE)
-	@Override
-	public MeetingRoom deleteMeetingRoom(MeetingRoom meetingRoom)
-		throws SystemException {
-		return meetingRoomPersistence.remove(meetingRoom);
-	}
+    /**
+     * Deletes the meeting room with the primary key from the database. Also notifies the appropriate model listeners.
+     *
+     * @param meetingRoomId the primary key of the meeting room
+     * @return the meeting room that was removed
+     * @throws PortalException if a meeting room with the primary key could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Indexable(type = IndexableType.DELETE)
+    @Override
+    public MeetingRoom deleteMeetingRoom(long meetingRoomId)
+        throws PortalException, SystemException {
+        return meetingRoomPersistence.remove(meetingRoomId);
+    }
 
-	@Override
-	public DynamicQuery dynamicQuery() {
-		Class<?> clazz = getClass();
+    /**
+     * Deletes the meeting room from the database. Also notifies the appropriate model listeners.
+     *
+     * @param meetingRoom the meeting room
+     * @return the meeting room that was removed
+     * @throws SystemException if a system exception occurred
+     */
+    @Indexable(type = IndexableType.DELETE)
+    @Override
+    public MeetingRoom deleteMeetingRoom(MeetingRoom meetingRoom)
+        throws SystemException {
+        return meetingRoomPersistence.remove(meetingRoom);
+    }
 
-		return DynamicQueryFactoryUtil.forClass(MeetingRoom.class,
-			clazz.getClassLoader());
-	}
+    @Override
+    public DynamicQuery dynamicQuery() {
+        Class<?> clazz = getClass();
 
-	/**
-	 * Performs a dynamic query on the database and returns the matching rows.
-	 *
-	 * @param dynamicQuery the dynamic query
-	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		return meetingRoomPersistence.findWithDynamicQuery(dynamicQuery);
-	}
+        return DynamicQueryFactoryUtil.forClass(MeetingRoom.class,
+            clazz.getClassLoader());
+    }
 
-	/**
-	 * Performs a dynamic query on the database and returns a range of the matching rows.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.LiferayEnEspanol.booking.model.impl.MeetingRoomModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param dynamicQuery the dynamic query
-	 * @param start the lower bound of the range of model instances
-	 * @param end the upper bound of the range of model instances (not inclusive)
-	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
-		return meetingRoomPersistence.findWithDynamicQuery(dynamicQuery, start,
-			end);
-	}
+    /**
+     * Performs a dynamic query on the database and returns the matching rows.
+     *
+     * @param dynamicQuery the dynamic query
+     * @return the matching rows
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    @SuppressWarnings("rawtypes")
+    public List dynamicQuery(DynamicQuery dynamicQuery)
+        throws SystemException {
+        return meetingRoomPersistence.findWithDynamicQuery(dynamicQuery);
+    }
 
-	/**
-	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.LiferayEnEspanol.booking.model.impl.MeetingRoomModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param dynamicQuery the dynamic query
-	 * @param start the lower bound of the range of model instances
-	 * @param end the upper bound of the range of model instances (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		return meetingRoomPersistence.findWithDynamicQuery(dynamicQuery, start,
-			end, orderByComparator);
-	}
+    /**
+     * Performs a dynamic query on the database and returns a range of the matching rows.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.LiferayEnEspanol.booking.model.impl.MeetingRoomModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param dynamicQuery the dynamic query
+     * @param start the lower bound of the range of model instances
+     * @param end the upper bound of the range of model instances (not inclusive)
+     * @return the range of matching rows
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    @SuppressWarnings("rawtypes")
+    public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
+        throws SystemException {
+        return meetingRoomPersistence.findWithDynamicQuery(dynamicQuery, start,
+            end);
+    }
 
-	/**
-	 * Returns the number of rows that match the dynamic query.
-	 *
-	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
-		return meetingRoomPersistence.countWithDynamicQuery(dynamicQuery);
-	}
+    /**
+     * Performs a dynamic query on the database and returns an ordered range of the matching rows.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.LiferayEnEspanol.booking.model.impl.MeetingRoomModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param dynamicQuery the dynamic query
+     * @param start the lower bound of the range of model instances
+     * @param end the upper bound of the range of model instances (not inclusive)
+     * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+     * @return the ordered range of matching rows
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    @SuppressWarnings("rawtypes")
+    public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
+        OrderByComparator orderByComparator) throws SystemException {
+        return meetingRoomPersistence.findWithDynamicQuery(dynamicQuery, start,
+            end, orderByComparator);
+    }
 
-	/**
-	 * Returns the number of rows that match the dynamic query.
-	 *
-	 * @param dynamicQuery the dynamic query
-	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
-		return meetingRoomPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
-	}
+    /**
+     * Returns the number of rows that match the dynamic query.
+     *
+     * @param dynamicQuery the dynamic query
+     * @return the number of rows that match the dynamic query
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public long dynamicQueryCount(DynamicQuery dynamicQuery)
+        throws SystemException {
+        return meetingRoomPersistence.countWithDynamicQuery(dynamicQuery);
+    }
 
-	@Override
-	public MeetingRoom fetchMeetingRoom(long meetingRoomId)
-		throws SystemException {
-		return meetingRoomPersistence.fetchByPrimaryKey(meetingRoomId);
-	}
+    /**
+     * Returns the number of rows that match the dynamic query.
+     *
+     * @param dynamicQuery the dynamic query
+     * @param projection the projection to apply to the query
+     * @return the number of rows that match the dynamic query
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public long dynamicQueryCount(DynamicQuery dynamicQuery,
+        Projection projection) throws SystemException {
+        return meetingRoomPersistence.countWithDynamicQuery(dynamicQuery,
+            projection);
+    }
 
-	/**
-	 * Returns the meeting room with the primary key.
-	 *
-	 * @param meetingRoomId the primary key of the meeting room
-	 * @return the meeting room
-	 * @throws PortalException if a meeting room with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public MeetingRoom getMeetingRoom(long meetingRoomId)
-		throws PortalException, SystemException {
-		return meetingRoomPersistence.findByPrimaryKey(meetingRoomId);
-	}
+    @Override
+    public MeetingRoom fetchMeetingRoom(long meetingRoomId)
+        throws SystemException {
+        return meetingRoomPersistence.fetchByPrimaryKey(meetingRoomId);
+    }
 
-	@Override
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
-		return meetingRoomPersistence.findByPrimaryKey(primaryKeyObj);
-	}
+    /**
+     * Returns the meeting room with the primary key.
+     *
+     * @param meetingRoomId the primary key of the meeting room
+     * @return the meeting room
+     * @throws PortalException if a meeting room with the primary key could not be found
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public MeetingRoom getMeetingRoom(long meetingRoomId)
+        throws PortalException, SystemException {
+        return meetingRoomPersistence.findByPrimaryKey(meetingRoomId);
+    }
 
-	/**
-	 * Returns a range of all the meeting rooms.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.LiferayEnEspanol.booking.model.impl.MeetingRoomModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param start the lower bound of the range of meeting rooms
-	 * @param end the upper bound of the range of meeting rooms (not inclusive)
-	 * @return the range of meeting rooms
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<MeetingRoom> getMeetingRooms(int start, int end)
-		throws SystemException {
-		return meetingRoomPersistence.findAll(start, end);
-	}
+    @Override
+    public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+        throws PortalException, SystemException {
+        return meetingRoomPersistence.findByPrimaryKey(primaryKeyObj);
+    }
 
-	/**
-	 * Returns the number of meeting rooms.
-	 *
-	 * @return the number of meeting rooms
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public int getMeetingRoomsCount() throws SystemException {
-		return meetingRoomPersistence.countAll();
-	}
+    /**
+     * Returns a range of all the meeting rooms.
+     *
+     * <p>
+     * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.LiferayEnEspanol.booking.model.impl.MeetingRoomModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+     * </p>
+     *
+     * @param start the lower bound of the range of meeting rooms
+     * @param end the upper bound of the range of meeting rooms (not inclusive)
+     * @return the range of meeting rooms
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public List<MeetingRoom> getMeetingRooms(int start, int end)
+        throws SystemException {
+        return meetingRoomPersistence.findAll(start, end);
+    }
 
-	/**
-	 * Updates the meeting room in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	 *
-	 * @param meetingRoom the meeting room
-	 * @return the meeting room that was updated
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Indexable(type = IndexableType.REINDEX)
-	@Override
-	public MeetingRoom updateMeetingRoom(MeetingRoom meetingRoom)
-		throws SystemException {
-		return meetingRoomPersistence.update(meetingRoom);
-	}
+    /**
+     * Returns the number of meeting rooms.
+     *
+     * @return the number of meeting rooms
+     * @throws SystemException if a system exception occurred
+     */
+    @Override
+    public int getMeetingRoomsCount() throws SystemException {
+        return meetingRoomPersistence.countAll();
+    }
 
-	/**
-	 * Returns the meeting room local service.
-	 *
-	 * @return the meeting room local service
-	 */
-	public com.LiferayEnEspanol.booking.service.MeetingRoomLocalService getMeetingRoomLocalService() {
-		return meetingRoomLocalService;
-	}
+    /**
+     * Updates the meeting room in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+     *
+     * @param meetingRoom the meeting room
+     * @return the meeting room that was updated
+     * @throws SystemException if a system exception occurred
+     */
+    @Indexable(type = IndexableType.REINDEX)
+    @Override
+    public MeetingRoom updateMeetingRoom(MeetingRoom meetingRoom)
+        throws SystemException {
+        return meetingRoomPersistence.update(meetingRoom);
+    }
 
-	/**
-	 * Sets the meeting room local service.
-	 *
-	 * @param meetingRoomLocalService the meeting room local service
-	 */
-	public void setMeetingRoomLocalService(
-		com.LiferayEnEspanol.booking.service.MeetingRoomLocalService meetingRoomLocalService) {
-		this.meetingRoomLocalService = meetingRoomLocalService;
-	}
+    /**
+     * Returns the meeting room local service.
+     *
+     * @return the meeting room local service
+     */
+    public com.LiferayEnEspanol.booking.service.MeetingRoomLocalService getMeetingRoomLocalService() {
+        return meetingRoomLocalService;
+    }
 
-	/**
-	 * Returns the meeting room remote service.
-	 *
-	 * @return the meeting room remote service
-	 */
-	public com.LiferayEnEspanol.booking.service.MeetingRoomService getMeetingRoomService() {
-		return meetingRoomService;
-	}
+    /**
+     * Sets the meeting room local service.
+     *
+     * @param meetingRoomLocalService the meeting room local service
+     */
+    public void setMeetingRoomLocalService(
+        com.LiferayEnEspanol.booking.service.MeetingRoomLocalService meetingRoomLocalService) {
+        this.meetingRoomLocalService = meetingRoomLocalService;
+    }
 
-	/**
-	 * Sets the meeting room remote service.
-	 *
-	 * @param meetingRoomService the meeting room remote service
-	 */
-	public void setMeetingRoomService(
-		com.LiferayEnEspanol.booking.service.MeetingRoomService meetingRoomService) {
-		this.meetingRoomService = meetingRoomService;
-	}
+    /**
+     * Returns the meeting room remote service.
+     *
+     * @return the meeting room remote service
+     */
+    public com.LiferayEnEspanol.booking.service.MeetingRoomService getMeetingRoomService() {
+        return meetingRoomService;
+    }
 
-	/**
-	 * Returns the meeting room persistence.
-	 *
-	 * @return the meeting room persistence
-	 */
-	public MeetingRoomPersistence getMeetingRoomPersistence() {
-		return meetingRoomPersistence;
-	}
+    /**
+     * Sets the meeting room remote service.
+     *
+     * @param meetingRoomService the meeting room remote service
+     */
+    public void setMeetingRoomService(
+        com.LiferayEnEspanol.booking.service.MeetingRoomService meetingRoomService) {
+        this.meetingRoomService = meetingRoomService;
+    }
 
-	/**
-	 * Sets the meeting room persistence.
-	 *
-	 * @param meetingRoomPersistence the meeting room persistence
-	 */
-	public void setMeetingRoomPersistence(
-		MeetingRoomPersistence meetingRoomPersistence) {
-		this.meetingRoomPersistence = meetingRoomPersistence;
-	}
+    /**
+     * Returns the meeting room persistence.
+     *
+     * @return the meeting room persistence
+     */
+    public MeetingRoomPersistence getMeetingRoomPersistence() {
+        return meetingRoomPersistence;
+    }
 
-	/**
-	 * Returns the counter local service.
-	 *
-	 * @return the counter local service
-	 */
-	public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
-		return counterLocalService;
-	}
+    /**
+     * Sets the meeting room persistence.
+     *
+     * @param meetingRoomPersistence the meeting room persistence
+     */
+    public void setMeetingRoomPersistence(
+        MeetingRoomPersistence meetingRoomPersistence) {
+        this.meetingRoomPersistence = meetingRoomPersistence;
+    }
 
-	/**
-	 * Sets the counter local service.
-	 *
-	 * @param counterLocalService the counter local service
-	 */
-	public void setCounterLocalService(
-		com.liferay.counter.service.CounterLocalService counterLocalService) {
-		this.counterLocalService = counterLocalService;
-	}
+    /**
+     * Returns the counter local service.
+     *
+     * @return the counter local service
+     */
+    public com.liferay.counter.service.CounterLocalService getCounterLocalService() {
+        return counterLocalService;
+    }
 
-	/**
-	 * Returns the resource local service.
-	 *
-	 * @return the resource local service
-	 */
-	public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
-		return resourceLocalService;
-	}
+    /**
+     * Sets the counter local service.
+     *
+     * @param counterLocalService the counter local service
+     */
+    public void setCounterLocalService(
+        com.liferay.counter.service.CounterLocalService counterLocalService) {
+        this.counterLocalService = counterLocalService;
+    }
 
-	/**
-	 * Sets the resource local service.
-	 *
-	 * @param resourceLocalService the resource local service
-	 */
-	public void setResourceLocalService(
-		com.liferay.portal.service.ResourceLocalService resourceLocalService) {
-		this.resourceLocalService = resourceLocalService;
-	}
+    /**
+     * Returns the resource local service.
+     *
+     * @return the resource local service
+     */
+    public com.liferay.portal.service.ResourceLocalService getResourceLocalService() {
+        return resourceLocalService;
+    }
 
-	/**
-	 * Returns the user local service.
-	 *
-	 * @return the user local service
-	 */
-	public com.liferay.portal.service.UserLocalService getUserLocalService() {
-		return userLocalService;
-	}
+    /**
+     * Sets the resource local service.
+     *
+     * @param resourceLocalService the resource local service
+     */
+    public void setResourceLocalService(
+        com.liferay.portal.service.ResourceLocalService resourceLocalService) {
+        this.resourceLocalService = resourceLocalService;
+    }
 
-	/**
-	 * Sets the user local service.
-	 *
-	 * @param userLocalService the user local service
-	 */
-	public void setUserLocalService(
-		com.liferay.portal.service.UserLocalService userLocalService) {
-		this.userLocalService = userLocalService;
-	}
+    /**
+     * Returns the user local service.
+     *
+     * @return the user local service
+     */
+    public com.liferay.portal.service.UserLocalService getUserLocalService() {
+        return userLocalService;
+    }
 
-	/**
-	 * Returns the user remote service.
-	 *
-	 * @return the user remote service
-	 */
-	public com.liferay.portal.service.UserService getUserService() {
-		return userService;
-	}
+    /**
+     * Sets the user local service.
+     *
+     * @param userLocalService the user local service
+     */
+    public void setUserLocalService(
+        com.liferay.portal.service.UserLocalService userLocalService) {
+        this.userLocalService = userLocalService;
+    }
 
-	/**
-	 * Sets the user remote service.
-	 *
-	 * @param userService the user remote service
-	 */
-	public void setUserService(
-		com.liferay.portal.service.UserService userService) {
-		this.userService = userService;
-	}
+    /**
+     * Returns the user remote service.
+     *
+     * @return the user remote service
+     */
+    public com.liferay.portal.service.UserService getUserService() {
+        return userService;
+    }
 
-	/**
-	 * Returns the user persistence.
-	 *
-	 * @return the user persistence
-	 */
-	public UserPersistence getUserPersistence() {
-		return userPersistence;
-	}
+    /**
+     * Sets the user remote service.
+     *
+     * @param userService the user remote service
+     */
+    public void setUserService(
+        com.liferay.portal.service.UserService userService) {
+        this.userService = userService;
+    }
 
-	/**
-	 * Sets the user persistence.
-	 *
-	 * @param userPersistence the user persistence
-	 */
-	public void setUserPersistence(UserPersistence userPersistence) {
-		this.userPersistence = userPersistence;
-	}
+    /**
+     * Returns the user persistence.
+     *
+     * @return the user persistence
+     */
+    public UserPersistence getUserPersistence() {
+        return userPersistence;
+    }
 
-	public void afterPropertiesSet() {
-		Class<?> clazz = getClass();
+    /**
+     * Sets the user persistence.
+     *
+     * @param userPersistence the user persistence
+     */
+    public void setUserPersistence(UserPersistence userPersistence) {
+        this.userPersistence = userPersistence;
+    }
 
-		_classLoader = clazz.getClassLoader();
+    public void afterPropertiesSet() {
+        Class<?> clazz = getClass();
 
-		PersistedModelLocalServiceRegistryUtil.register("com.LiferayEnEspanol.booking.model.MeetingRoom",
-			meetingRoomLocalService);
-	}
+        _classLoader = clazz.getClassLoader();
 
-	public void destroy() {
-		PersistedModelLocalServiceRegistryUtil.unregister(
-			"com.LiferayEnEspanol.booking.model.MeetingRoom");
-	}
+        PersistedModelLocalServiceRegistryUtil.register("com.LiferayEnEspanol.booking.model.MeetingRoom",
+            meetingRoomLocalService);
+    }
 
-	/**
-	 * Returns the Spring bean ID for this bean.
-	 *
-	 * @return the Spring bean ID for this bean
-	 */
-	@Override
-	public String getBeanIdentifier() {
-		return _beanIdentifier;
-	}
+    public void destroy() {
+        PersistedModelLocalServiceRegistryUtil.unregister(
+            "com.LiferayEnEspanol.booking.model.MeetingRoom");
+    }
 
-	/**
-	 * Sets the Spring bean ID for this bean.
-	 *
-	 * @param beanIdentifier the Spring bean ID for this bean
-	 */
-	@Override
-	public void setBeanIdentifier(String beanIdentifier) {
-		_beanIdentifier = beanIdentifier;
-	}
+    /**
+     * Returns the Spring bean ID for this bean.
+     *
+     * @return the Spring bean ID for this bean
+     */
+    @Override
+    public String getBeanIdentifier() {
+        return _beanIdentifier;
+    }
 
-	@Override
-	public Object invokeMethod(String name, String[] parameterTypes,
-		Object[] arguments) throws Throwable {
-		Thread currentThread = Thread.currentThread();
+    /**
+     * Sets the Spring bean ID for this bean.
+     *
+     * @param beanIdentifier the Spring bean ID for this bean
+     */
+    @Override
+    public void setBeanIdentifier(String beanIdentifier) {
+        _beanIdentifier = beanIdentifier;
+    }
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+    @Override
+    public Object invokeMethod(String name, String[] parameterTypes,
+        Object[] arguments) throws Throwable {
+        Thread currentThread = Thread.currentThread();
 
-		if (contextClassLoader != _classLoader) {
-			currentThread.setContextClassLoader(_classLoader);
-		}
+        ClassLoader contextClassLoader = currentThread.getContextClassLoader();
 
-		try {
-			return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
-		}
-		finally {
-			if (contextClassLoader != _classLoader) {
-				currentThread.setContextClassLoader(contextClassLoader);
-			}
-		}
-	}
+        if (contextClassLoader != _classLoader) {
+            currentThread.setContextClassLoader(_classLoader);
+        }
 
-	protected Class<?> getModelClass() {
-		return MeetingRoom.class;
-	}
+        try {
+            return _clpInvoker.invokeMethod(name, parameterTypes, arguments);
+        } finally {
+            if (contextClassLoader != _classLoader) {
+                currentThread.setContextClassLoader(contextClassLoader);
+            }
+        }
+    }
 
-	protected String getModelClassName() {
-		return MeetingRoom.class.getName();
-	}
+    protected Class<?> getModelClass() {
+        return MeetingRoom.class;
+    }
 
-	/**
-	 * Performs an SQL query.
-	 *
-	 * @param sql the sql query
-	 */
-	protected void runSQL(String sql) throws SystemException {
-		try {
-			DataSource dataSource = meetingRoomPersistence.getDataSource();
+    protected String getModelClassName() {
+        return MeetingRoom.class.getName();
+    }
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql, new int[0]);
+    /**
+     * Performs an SQL query.
+     *
+     * @param sql the sql query
+     */
+    protected void runSQL(String sql) throws SystemException {
+        try {
+            DataSource dataSource = meetingRoomPersistence.getDataSource();
 
-			sqlUpdate.update();
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-	}
+            SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
+                    sql, new int[0]);
 
-	@BeanReference(type = com.LiferayEnEspanol.booking.service.MeetingRoomLocalService.class)
-	protected com.LiferayEnEspanol.booking.service.MeetingRoomLocalService meetingRoomLocalService;
-	@BeanReference(type = com.LiferayEnEspanol.booking.service.MeetingRoomService.class)
-	protected com.LiferayEnEspanol.booking.service.MeetingRoomService meetingRoomService;
-	@BeanReference(type = MeetingRoomPersistence.class)
-	protected MeetingRoomPersistence meetingRoomPersistence;
-	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
-	protected com.liferay.counter.service.CounterLocalService counterLocalService;
-	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
-	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
-	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
-	protected com.liferay.portal.service.UserLocalService userLocalService;
-	@BeanReference(type = com.liferay.portal.service.UserService.class)
-	protected com.liferay.portal.service.UserService userService;
-	@BeanReference(type = UserPersistence.class)
-	protected UserPersistence userPersistence;
-	private String _beanIdentifier;
-	private ClassLoader _classLoader;
-	private MeetingRoomLocalServiceClpInvoker _clpInvoker = new MeetingRoomLocalServiceClpInvoker();
+            sqlUpdate.update();
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
 }
